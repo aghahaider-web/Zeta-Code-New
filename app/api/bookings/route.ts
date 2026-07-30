@@ -5,6 +5,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { supabaseServer } from '@/lib/supabase-server';
 
+// ARCH: explicit — this route mutates live booking/lead/slot state and
+// must never be statically cached or evaluated outside a real request.
+export const dynamic = 'force-dynamic';
+
 const bookingSchema = z.object({
   slot_id: z.string().uuid(),
   full_name: z.string().min(1).max(200),

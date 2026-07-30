@@ -4,6 +4,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { supabaseServer } from '@/lib/supabase-server';
 
+// ARCH: explicit — this route mutates live lead/proposal data and must
+// never be statically cached or evaluated outside a real request.
+export const dynamic = 'force-dynamic';
+
 const budgetBands = ['under_1500','1500_3000','3000_5000','5000_10000','10000_plus','not_sure'] as const;
 
 const proposalSchema = z.object({
