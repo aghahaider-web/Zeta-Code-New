@@ -1,5 +1,6 @@
 // src/components/layout/Footer.tsx — Section 3.2 footer groups
 import Link from 'next/link';
+import type { Route } from 'next';
 
 const groups = [
   { heading: 'Services', links: [
@@ -63,7 +64,7 @@ export function Footer() {
                 textTransform: 'uppercase', marginBottom: 'var(--space-2)' }}>
                 {g.heading}
               </p>
-              {g.links.map(l => <Link key={l.href} href={l.href} style={linkStyle}>{l.label}</Link>)}
+              {g.links.map(l => <Link key={l.href} href={l.href as Route} style={linkStyle}>{l.label}</Link>)}
             </div>
           ))}
         </div>

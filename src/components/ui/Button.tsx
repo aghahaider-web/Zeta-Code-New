@@ -3,9 +3,11 @@
 // WCAG 2.2 AA contrast enforced. Min 44px touch target.
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import type { Route } from 'next';
 
-type Props = {
-  href: string;
+// ARCH: Explicit type export to ensure TypeScript compiler sees children property
+export type ButtonProps = {
+  href: Route;
   variant?: 'primary' | 'secondary';
   /* BRAND: 'dark' = button sits on a dark section (--color-charcoal, DARK const
      in page.tsx). Secondary previously hardcoded --color-ink border/text, which
@@ -13,9 +15,10 @@ type Props = {
      effectively invisible. Primary is unaffected: lime-on-ink always passes AA
      regardless of surface, so it doesn't need a theme prop. */
   theme?: 'light' | 'dark';
+  children: ReactNode;
 };
 
-export function Button({ href, variant = 'primary', theme = 'light', children }: Props) {
+export function Button({ href, variant = 'primary', theme = 'light', children }: ButtonProps) {
   const base: React.CSSProperties = {
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
     minHeight: '44px', padding: '0 1.75rem',

@@ -1,7 +1,7 @@
-﻿// src/lib/supabase-server.ts
-// Server-side Supabase client â€” uses service role for API routes that need
+// src/lib/supabase-server.ts
+// Server-side Supabase client — uses service role for API routes that need
 // to write past RLS (public booking/proposal inserts). Never expose this
-// key to the client. Section 11.3 â€” secrets stay in deployment env only.
+// key to the client. Section 11.3 — secrets stay in deployment env only.
 import { createClient } from '@supabase/supabase-js';
 
 export function supabaseServer() {
@@ -12,7 +12,7 @@ export function supabaseServer() {
   );
 }
 
-// Dashboard-authenticated client â€” respects RLS via user's own session.
+// Dashboard-authenticated client — respects RLS via user's own session.
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 
@@ -23,7 +23,7 @@ export function supabaseDashboard() {
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
     {
       cookies: {
-        get: (name) => cookieStore.get(name)?.value,
+        get: (name: string) => cookieStore.get(name)?.value,
       },
     }
   );

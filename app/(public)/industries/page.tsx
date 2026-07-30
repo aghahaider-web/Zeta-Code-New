@@ -4,6 +4,7 @@
 // H1 uses ServicesHeadline component with line-by-line GSAP animation.
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import type { Route } from 'next';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { ServicesHeadline } from '@/components/ui/ServicesHeadline';
 
@@ -82,7 +83,7 @@ export default function IndustriesPage() {
             {INDUSTRIES.map((ind) => (
               <Link
                 key={ind.href}
-                href={ind.href}
+                href={ind.href as Route}
                 className="industries-card group"
                 style={{
                   display: 'block',

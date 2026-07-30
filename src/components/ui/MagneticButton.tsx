@@ -3,8 +3,9 @@ import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import type { Route } from 'next';
 
-type Props = { href: string; variant?: 'primary' | 'secondary'; children: ReactNode; };
+type Props = { href: Route; variant?: 'primary' | 'secondary'; children: ReactNode; };
 
 const base: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '44px', padding: '0 1.75rem', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 600, letterSpacing: '0.01em', textDecoration: 'none', borderRadius: '2px', willChange: 'transform' };
 const variants: Record<string, React.CSSProperties> = {
