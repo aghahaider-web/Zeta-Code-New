@@ -26,5 +26,4 @@ export default defineType({
       description: 'Used in confirmation copy. Do not change without reviewing all confirmation emails.',
     }),
   ],
-  __experimental_actions: ['update', 'publish'],
 });
