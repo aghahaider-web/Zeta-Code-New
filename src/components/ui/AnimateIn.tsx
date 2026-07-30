@@ -11,18 +11,18 @@ export function AnimateIn({ children, delay = 0, y = 40, duration = 0.9, classNa
   useEffect(() => {
     const el = ref.current; if (!el) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.style.opacity = '1'; return; }
-    // ARCH: capture the ScrollTrigger instance at creation so cleanup kills
-    // exactly this trigger, not any other trigger that happens to share the
-    // same DOM element. The previous filter(st => st.trigger === el) approach
-    // iterated ALL global ScrollTrigger instances and could kill unrelated ones.
-    let st: ScrollTrigger | undefined;
-    gsap.fromTo(el, { opacity: 0, y }, {
+    // ARCH: this installed gsap version's shipped ScrollTrigger.Vars type
+    // does not include onInit (removed from the type surface, though it
+    // still exists at runtime) — using it fails the build under strict
+    // mode. Reading .scrollTrigger off the returned Tween is the
+    // type-safe equivalent: gsap always attaches the created ScrollTrigger
+    // instance there, so cleanup still kills exactly this trigger and
+    // nothing else that happens to share the same DOM element.
+    const tween = gsap.fromTo(el, { opacity: 0, y }, {
       opacity: 1, y: 0, duration, delay, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none',
-        onInit: (self) => { st = self; },
-      },
+      scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
     });
-    return () => { st?.kill(); };
+    return () => { tween.scrollTrigger?.kill(); };
   }, [delay, y, duration]);
   return <div ref={ref} className={className} style={{ opacity: 0, ...style }}>{children}</div>;
 }

@@ -17,12 +17,19 @@ export function StaggerIn({ children, stagger = 0.12, y = 30, duration = 0.8, sc
        alongside the existing y-rise, giving the "opening" feel (Replit bento
        reference) rather than a flat fade-up. transformOrigin kept at center
        so growth reads as the card itself expanding, not sliding from a corner. */
-    gsap.fromTo(
+    const tween = gsap.fromTo(
       kids,
       { opacity: 0, y, ...(scale !== undefined ? { scale, transformOrigin: 'center center' } : {}) },
       { opacity: 1, y: 0, ...(scale !== undefined ? { scale: 1 } : {}), duration, stagger, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' } }
     );
-    return () => { ScrollTrigger.getAll().filter(st => st.trigger === el).forEach(st => st.kill()); };
+    // ARCH: read the ScrollTrigger instance directly off the returned
+    // Tween rather than ScrollTrigger.getAll().filter(trigger === el).
+    // The filter approach walks every global ScrollTrigger instance and
+    // kills any that happen to share this element as `trigger` — on a
+    // page with multiple animated components mounted on overlapping
+    // containers, that can kill a trigger this component doesn't own.
+    // tween.scrollTrigger is exactly the one instance this effect created.
+    return () => { tween.scrollTrigger?.kill(); };
   }, [stagger, y, duration, scale]);
   return <div ref={ref} className={className} style={style}>{children}</div>;
 }
