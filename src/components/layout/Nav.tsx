@@ -2,8 +2,9 @@
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 import { MagneticButton } from '@/components/ui/MagneticButton';
+import type { Route } from 'next';
 
-const LINKS = [
+const LINKS: { href: Route; label: string }[] = [
   { href: '/services', label: 'Services' },
   { href: '/industries', label: 'Industries' },
   { href: '/work', label: 'Work' },
