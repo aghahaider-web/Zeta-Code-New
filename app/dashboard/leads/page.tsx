@@ -2,7 +2,6 @@
 // Supports search, status filter, sorting. No lead deletion — archive only.
 export const metadata = { robots: { index: false, follow: false } };
 import { supabaseDashboard } from '@/lib/supabase-server';
-import Link from 'next/link';
 
 const STATUSES = [
   'new','contacted','qualified','discovery_booked','proposal_in_progress',
@@ -45,7 +44,7 @@ export default async function LeadsPage({
           {leads && leads.length > 0 ? (
             leads.map(l => (
               <tr key={l.id}>
-                <td style={{ padding:'0.5rem' }}><Link href={`/dashboard/leads/${l.id}`}>{l.full_name}</Link></td>
+                <td style={{ padding:'0.5rem' }}><a href={`/dashboard/leads/${l.id}`}>{l.full_name}</a></td>
                 <td style={{ padding:'0.5rem' }}>{l.business_email}</td>
                 <td style={{ padding:'0.5rem' }}>{l.company_name}</td>
                 <td style={{ padding:'0.5rem' }}>{l.status}</td>
@@ -58,9 +57,9 @@ export default async function LeadsPage({
               <td colSpan={6} style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-ink-muted)' }}>
                 <p style={{ marginBottom: '0.5rem' }}>No leads found.</p>
                 {(searchParams.q || searchParams.status) && (
-                  <Link href="/dashboard/leads" style={{ color: 'var(--color-ink)', textDecoration: 'underline', fontWeight: 500 }}>
+                  <a href="/dashboard/leads" style={{ color: 'var(--color-ink)', textDecoration: 'underline', fontWeight: 500 }}>
                     Clear filters
-                  </Link>
+                  </a>
                 )}
               </td>
             </tr>
