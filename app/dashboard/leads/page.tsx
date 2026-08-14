@@ -55,11 +55,16 @@ export default async function LeadsPage({
             ))
           ) : (
             <tr>
-              <td colSpan={6} style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-ink-muted)' }}>
-                <p style={{ marginBottom: '0.5rem' }}>No leads found.</p>
+              <td colSpan={6} style={{ padding: '4rem 2rem', textAlign: 'center', color: 'var(--color-ink-muted)' }}>
+                <svg style={{ width: '48px', height: '48px', margin: '0 auto 1rem', color: 'var(--color-olive)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                </svg>
+                <p style={{ marginBottom: '0.5rem', fontFamily: 'var(--font-display)', fontSize: 'var(--text-md)', color: 'var(--color-ink)' }}>
+                  {(searchParams.q || searchParams.status) ? "No leads match your filters." : "No leads yet."}
+                </p>
                 {(searchParams.q || searchParams.status) && (
-                  <Link href="/dashboard/leads" style={{ color: 'var(--color-ink)', textDecoration: 'underline', fontWeight: 500 }}>
-                    Clear filters
+                  <Link href="/dashboard/leads" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '44px', padding: '0 1.5rem', background: 'transparent', color: 'var(--color-ink)', border: '1px solid var(--color-ink)', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', textDecoration: 'none', marginTop: '1rem' }}>
+                    Clear all filters
                   </Link>
                 )}
               </td>
