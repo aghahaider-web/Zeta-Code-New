@@ -21,15 +21,23 @@ export default async function BookingsPage() {
           )}</tr>
         </thead>
         <tbody>
-          {bookings?.map((b: any) => (
-            <tr key={b.id}>
-              <td style={{ padding:'0.5rem' }}>{b.leads?.full_name}</td>
-              <td style={{ padding:'0.5rem' }}>{b.leads?.business_email}</td>
-              <td style={{ padding:'0.5rem' }}>{b.time_slots?.start_utc}</td>
-              <td style={{ padding:'0.5rem' }}>{b.booking_state}</td>
-              <td style={{ padding:'0.5rem' }}>{b.visitor_timezone}</td>
+          {bookings && bookings.length > 0 ? (
+            bookings.map((b: any) => (
+              <tr key={b.id}>
+                <td style={{ padding:'0.5rem' }}>{b.leads?.full_name}</td>
+                <td style={{ padding:'0.5rem' }}>{b.leads?.business_email}</td>
+                <td style={{ padding:'0.5rem' }}>{b.time_slots?.start_utc}</td>
+                <td style={{ padding:'0.5rem' }}>{b.booking_state}</td>
+                <td style={{ padding:'0.5rem' }}>{b.visitor_timezone}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={5} style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-ink-muted)' }}>
+                <p style={{ marginBottom: '0.5rem' }}>No bookings found.</p>
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </main>
