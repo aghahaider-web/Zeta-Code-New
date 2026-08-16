@@ -2,6 +2,7 @@
 export const metadata = { robots: { index: false, follow: false } };
 import { supabaseDashboard } from '@/lib/supabase-server';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
 export default async function LeadDetail({ params }: { params: { id: string } }) {
   const db = supabaseDashboard();
@@ -15,9 +16,9 @@ export default async function LeadDetail({ params }: { params: { id: string } })
 
   return (
     <main style={{ padding: '2rem', fontFamily: 'var(--font-body)', maxWidth: '900px' }}>
-      <a href="/dashboard/leads" style={{ fontSize: 'var(--text-sm)', color: 'var(--color-olive)' }}>
+      <Link href="/dashboard/leads" style={{ fontSize: 'var(--text-sm)', color: 'var(--color-olive)' }}>
         ← Back to leads
-      </a>
+      </Link>
       <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', margin: '1rem 0' }}>
         {lead.full_name}
       </h1>
