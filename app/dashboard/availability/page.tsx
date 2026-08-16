@@ -24,14 +24,22 @@ export default async function AvailabilityPage() {
           )}</tr>
         </thead>
         <tbody>
-          {slots?.map(s => (
-            <tr key={s.id}>
-              <td style={{ padding:'0.5rem' }}>{s.start_utc}</td>
-              <td style={{ padding:'0.5rem' }}>{s.end_utc}</td>
-              <td style={{ padding:'0.5rem' }}>{s.status}</td>
-              <td style={{ padding:'0.5rem' }}>{s.capacity}</td>
+          {slots && slots.length > 0 ? (
+            slots.map(s => (
+              <tr key={s.id}>
+                <td style={{ padding:'0.5rem' }}>{s.start_utc}</td>
+                <td style={{ padding:'0.5rem' }}>{s.end_utc}</td>
+                <td style={{ padding:'0.5rem' }}>{s.status}</td>
+                <td style={{ padding:'0.5rem' }}>{s.capacity}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={4} style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-ink-muted)' }}>
+                <p>No availability slots found.</p>
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </main>

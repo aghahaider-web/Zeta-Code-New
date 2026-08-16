@@ -2,6 +2,7 @@
 // Noindex enforced via layout metadata. Auth gate: middleware.ts
 import { supabaseDashboard } from '@/lib/supabase-server';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 export const metadata = { robots: { index: false, follow: false } };
 
 export default async function DashboardHome() {
@@ -24,9 +25,9 @@ export default async function DashboardHome() {
         <StatCard label="Confirmed bookings" value={bookings ?? 0} />
       </div>
       <nav style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
-        <a href="/dashboard/leads">Leads</a>
-        <a href="/dashboard/bookings">Bookings</a>
-        <a href="/dashboard/availability">Availability</a>
+        <Link href="/dashboard/leads">Leads</Link>
+        <Link href="/dashboard/bookings">Bookings</Link>
+        <Link href="/dashboard/availability">Availability</Link>
       </nav>
     </main>
   );
