@@ -21,11 +21,23 @@ export function MagneticButton({ href, variant = 'primary', children }: Props) {
     if (!wrap || !btn) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.matchMedia('(hover: none)').matches) return;
+
+    // ⚡ Bolt: Use gsap.quickTo for high-frequency mousemove events
+    // Calling gsap.to() on every mousemove creates a new tween object per frame,
+    // causing unnecessary GC overhead. quickTo() reuses the same instance and is much faster.
+    const xTo = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power2.out' });
+    const yTo = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power2.out' });
+
     const onMove = (e: MouseEvent) => {
       const r = wrap.getBoundingClientRect();
-      gsap.to(btn, { x: (e.clientX - r.left - r.width/2) * 0.35, y: (e.clientY - r.top - r.height/2) * 0.35, duration: 0.4, ease: 'power2.out' });
+      xTo((e.clientX - r.left - r.width/2) * 0.35);
+      yTo((e.clientY - r.top - r.height/2) * 0.35);
     };
-    const onLeave = () => gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+    const onLeave = () => {
+      // ⚡ Bolt: Use regular gsap.to for the spring back so we can use a different ease (elastic)
+      // which quickTo doesn't support changing dynamically.
+      gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+    };
     wrap.addEventListener('mousemove', onMove);
     wrap.addEventListener('mouseleave', onLeave);
     return () => { wrap.removeEventListener('mousemove', onMove); wrap.removeEventListener('mouseleave', onLeave); };
