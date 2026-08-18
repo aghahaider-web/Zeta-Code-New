@@ -48,6 +48,7 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={loading}
+          aria-busy={loading}
           style={{ width:'100%', padding:'0.75rem', background:'var(--color-ink)', color:'var(--color-canvas)', border:'none', borderRadius:4, cursor: loading ? 'wait' : 'pointer', fontFamily:'var(--font-body)', opacity: loading ? 0.7 : 1 }}
         >
           {loading ? 'Signing in…' : 'Sign in'}
