@@ -1,5 +1,7 @@
 // app/(public)/page.tsx — Homepage, 12-section structure per blueprint Section 3.3
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import type { Route } from 'next';
 import { Button } from '@/components/ui/Button';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { ServicesScrollBento } from '@/components/ui/ServicesScrollBento';
@@ -184,10 +186,10 @@ export default function HomePage() {
               { title: 'Property & interiors', desc: 'Real estate, architecture, and interior design firms whose website should reflect the standard of their work.', href: '/industries/property-interiors' },
               { title: 'Health & clinics', desc: 'Clinics and appointment-driven health businesses where trust and booking simplicity decide the conversion.', href: '/industries/health-clinics' },
             ].map(i => (
-              <a key={i.href} href={i.href} style={{ display: 'block', textDecoration: 'none', background: 'var(--color-canvas)', border: '1px solid var(--color-border)', borderRadius: '4px', padding: 'var(--space-4)', color: 'var(--color-ink)' }}>
+              <Link key={i.href} href={i.href as Route} className="industries-card group" style={{ display: 'block', textDecoration: 'none', background: 'var(--color-canvas)', border: '1px solid var(--color-border)', borderRadius: '4px', padding: 'var(--space-4)', color: 'var(--color-ink)', transition: 'border-color var(--duration-fast) var(--ease-standard)' }}>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', marginBottom: 'var(--space-1)' }}>{i.title}</h3>
                 <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-ink-muted)', lineHeight: 'var(--leading-normal)' }}>{i.desc}</p>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
