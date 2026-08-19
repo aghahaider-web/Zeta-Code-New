@@ -21,14 +21,35 @@ export function MagneticButton({ href, variant = 'primary', children }: Props) {
     if (!wrap || !btn) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.matchMedia('(hover: none)').matches) return;
+
+    // Cache DOMRect to prevent layout thrashing on every mousemove frame
+    let cachedRect: DOMRect | null = null;
+
+    const onEnter = () => {
+      cachedRect = wrap.getBoundingClientRect();
+    };
+
     const onMove = (e: MouseEvent) => {
-      const r = wrap.getBoundingClientRect();
+      if (!cachedRect) {
+        cachedRect = wrap.getBoundingClientRect();
+      }
+      const r = cachedRect;
       gsap.to(btn, { x: (e.clientX - r.left - r.width/2) * 0.35, y: (e.clientY - r.top - r.height/2) * 0.35, duration: 0.4, ease: 'power2.out' });
     };
-    const onLeave = () => gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+
+    const onLeave = () => {
+      cachedRect = null;
+      gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+    };
+
+    wrap.addEventListener('mouseenter', onEnter);
     wrap.addEventListener('mousemove', onMove);
     wrap.addEventListener('mouseleave', onLeave);
-    return () => { wrap.removeEventListener('mousemove', onMove); wrap.removeEventListener('mouseleave', onLeave); };
+    return () => {
+      wrap.removeEventListener('mouseenter', onEnter);
+      wrap.removeEventListener('mousemove', onMove);
+      wrap.removeEventListener('mouseleave', onLeave);
+    };
   }, []);
   return (
     <div ref={wrapRef} style={{ display: 'inline-block', padding: '8px' }}>
