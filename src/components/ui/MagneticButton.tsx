@@ -7,7 +7,7 @@ import type { Route } from 'next';
 
 type Props = { href: Route; variant?: 'primary' | 'secondary'; children: ReactNode; };
 
-const base: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '44px', padding: '0 1.75rem', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 600, letterSpacing: '0.01em', textDecoration: 'none', borderRadius: '2px', willChange: 'transform' };
+const base: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '44px', padding: '0 1.75rem', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 600, letterSpacing: '0.01em', textDecoration: 'none', borderRadius: 'var(--radius-sm)', willChange: 'transform' };
 const variants: Record<string, React.CSSProperties> = {
   primary: { ...base, background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none' },
   secondary: { ...base, background: 'transparent', color: 'var(--color-ink)', border: '1px solid var(--color-ink)' },

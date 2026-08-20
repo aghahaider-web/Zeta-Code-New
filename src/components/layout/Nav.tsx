@@ -168,7 +168,7 @@ export function Nav() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             minHeight: '52px', background: 'var(--color-lime)', color: 'var(--color-ink)',
             fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 600,
-            textDecoration: 'none', borderRadius: '2px',
+            textDecoration: 'none', borderRadius: 'var(--radius-sm)',
           }}>
             Book a discovery call
           </Link>
@@ -177,7 +177,7 @@ export function Nav() {
             minHeight: '52px', border: '1px solid var(--color-ink)',
             color: 'var(--color-ink)', fontFamily: 'var(--font-body)',
             fontSize: 'var(--text-sm)', fontWeight: 600,
-            textDecoration: 'none', borderRadius: '2px',
+            textDecoration: 'none', borderRadius: 'var(--radius-sm)',
           }}>
             Request a proposal
           </Link>

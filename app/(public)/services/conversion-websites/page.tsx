@@ -51,6 +51,7 @@ export default function ConversionWebsitesPage() {
           <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
             <Link
               href="/book-a-call"
+              className="conversion-websites-primary"
               style={{
                 display: 'inline-block',
                 background: 'var(--color-lime)',
@@ -60,13 +61,14 @@ export default function ConversionWebsitesPage() {
                 fontWeight: 600,
                 textDecoration: 'none',
                 borderRadius: 'var(--radius-sm)',
-                transition: `background var(--duration-fast) var(--ease-standard)`,
+                transition: `background var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard)`,
               }}
             >
               Book a discovery call
             </Link>
             <Link
               href="/request-a-proposal"
+              className="conversion-websites-secondary"
               style={{
                 display: 'inline-block',
                 background: 'var(--color-white)',

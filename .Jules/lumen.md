@@ -1,0 +1,3 @@
+## 2024-08-20 - Missing Hover States & Invalid Tokens
+**Learning:** Found instances of CTAs using invalid CSS variables for border radius (`var(--radius-sm)`) and missing class assignments for hover states defined in `globals.css` (e.g. `conversion-websites-primary`). Inline styles with invalid vars will silently fall back to defaults, breaking visual consistency and leaving interactions feeling unresponsive.
+**Action:** When auditing or implementing buttons, always verify that the assigned radius token actually exists in the design system, and ensure that `.class:hover` rules in global CSS are explicitly bound via `className` to the respective components to retain interactivity.

@@ -42,6 +42,8 @@
   --space-1: 0.5rem; --space-2: 1rem; --space-3: 1.5rem; --space-4: 2rem;
   --space-5: 3rem; --space-6: 4rem; --space-7: 6rem; --space-8: 9rem;
 
+  --radius-sm: 2px;
+
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 180ms;
   --duration-base: 320ms;

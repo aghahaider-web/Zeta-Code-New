@@ -80,7 +80,7 @@ export default function AboutPage() {
               fontWeight: 600,
               textDecoration: 'none',
               borderRadius: 'var(--radius-sm)',
-              transition: `background var(--duration-fast) var(--ease-standard)`,
+              transition: `background var(--duration-fast) var(--ease-standard), opacity var(--duration-fast) var(--ease-standard)`,
             }}
           >
             Ready to talk? Book a discovery call
