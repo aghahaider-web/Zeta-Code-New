@@ -1,0 +1,3 @@
+## 2024-08-20 - Intl.DateTimeFormat caching in loops
+**Learning:** `Date.prototype.toLocaleString` is surprisingly slow in JavaScript because it implicitly instantiates a new `Intl.DateTimeFormat` internally for every call. When rendering lists or tables (like available booking slots), this can add substantial synchronous blocking time to the main thread during render (measured ~800ms vs ~4ms for 1000 calls).
+**Action:** Always extract and memoize (e.g. `useMemo`) an explicit `new Intl.DateTimeFormat(...)` instance outside the loop/map, and call `.format(date)` instead of using `.toLocaleString()` directly when formatting multiple dates in the same view.
