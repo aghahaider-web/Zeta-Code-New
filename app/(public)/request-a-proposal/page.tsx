@@ -98,7 +98,7 @@ export default function RequestProposalPage() {
             <legend style={lbl}>Services of interest *</legend>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-1)', marginBottom: 'var(--space-2)' }}>
               {SERVICES.map(s => (
-                <label key={s} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: 'var(--text-sm)', padding: '6px 12px', border: `1px solid ${form.services_interested.includes(s) ? 'var(--color-ink)' : 'var(--color-border)'}`, borderRadius: '2px', cursor: 'pointer', minHeight: '44px' }}>
+                <label key={s} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: 'var(--text-sm)', padding: '6px 12px', border: `1px solid ${form.services_interested.includes(s) ? 'var(--color-ink)' : 'var(--color-border)'}`, borderRadius: 'var(--radius-sm)', cursor: 'pointer', minHeight: '44px' }}>
                   <input type="checkbox" checked={form.services_interested.includes(s)} onChange={() => toggleService(s)} style={{ accentColor: 'var(--color-ink)' }} />
                   {s}
                 </label>
@@ -131,7 +131,7 @@ export default function RequestProposalPage() {
 
           {errorMsg && <p role="alert" style={{ color: '#B91C1C', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-2)' }}>{errorMsg}</p>}
 
-          <button type="submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'} style={{ minHeight: '44px', padding: '0 1.75rem', background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: 'pointer' }}>
+          <button type="submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'} style={{ minHeight: '44px', padding: '0 1.75rem', background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none', borderRadius: 'var(--radius-sm)', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: 'pointer' }}>
             {status === 'submitting' ? 'Sending…' : 'Submit request'}
           </button>
         </form>

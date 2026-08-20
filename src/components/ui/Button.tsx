@@ -24,7 +24,7 @@ export function Button({ href, variant = 'primary', theme = 'light', children }:
     minHeight: '44px', padding: '0 1.75rem',
     fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)',
     fontWeight: 600, letterSpacing: '0.01em',
-    textDecoration: 'none', borderRadius: '2px',
+    textDecoration: 'none', borderRadius: 'var(--radius-sm)',
     transition: `background var(--duration-fast) var(--ease-standard),
                  color var(--duration-fast) var(--ease-standard),
                  outline-offset var(--duration-fast) var(--ease-standard)`,

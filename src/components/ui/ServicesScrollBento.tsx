@@ -215,7 +215,7 @@ export function ServicesScrollBento({ cards }: Props) {
           }}
         >
           {s.flag && (
-            <span style={{ display: 'inline-block', fontSize: 'var(--text-xs)', background: 'var(--color-lime)', color: 'var(--color-ink)', padding: '2px 8px', borderRadius: '2px', marginBottom: 'var(--space-1)', fontWeight: 600 }}>
+            <span style={{ display: 'inline-block', fontSize: 'var(--text-xs)', background: 'var(--color-lime)', color: 'var(--color-ink)', padding: '2px 8px', borderRadius: 'var(--radius-sm)', marginBottom: 'var(--space-1)', fontWeight: 600 }}>
               {s.flag}
             </span>
           )}
@@ -255,7 +255,7 @@ export function ServicesScrollBento({ cards }: Props) {
           }}
         >
           {s.flag && (
-            <span data-brief-item style={{ display: 'inline-block', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-body)', background: 'var(--color-lime)', color: 'var(--color-ink)', padding: '2px 8px', borderRadius: '2px', marginBottom: 'var(--space-1)', fontWeight: 600, width: 'fit-content' }}>
+            <span data-brief-item style={{ display: 'inline-block', fontSize: 'var(--text-xs)', fontFamily: 'var(--font-body)', background: 'var(--color-lime)', color: 'var(--color-ink)', padding: '2px 8px', borderRadius: 'var(--radius-sm)', marginBottom: 'var(--space-1)', fontWeight: 600, width: 'fit-content' }}>
               {s.flag}
             </span>
           )}
