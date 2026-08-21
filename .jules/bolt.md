@@ -1,0 +1,3 @@
+## 2024-11-20 - Intl.DateTimeFormat caching prevents main thread blocking
+**Learning:** Calling `Date.prototype.toLocaleString()` or `toLocaleDateString()` inside loops (such as rendering lists or maps in components) causes severe performance drops due to repeatedly instantiating the formatting engine under the hood. Benchmarks show this can block the main thread significantly.
+**Action:** Always cache `Intl.DateTimeFormat` instances (using `useMemo` in client components or static instantiation in server components) and use `.format()` instead of calling `Date.prototype.toLocaleString()` directly when rendering multiple dates.
