@@ -1,0 +1,3 @@
+## 2024-08-21 - Inline Style Hover Interactions
+**Learning:** Heavy use of React inline-styles requires explicit global utility classes for `:hover` and `:focus-visible` states to preserve interactive visual polish, as inline styles cannot express pseudo-classes.
+**Action:** When working in inline-style heavy React codebases, extract hover/focus states to global CSS classes and apply them alongside the inline styles.
