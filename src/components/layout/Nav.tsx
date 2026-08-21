@@ -67,10 +67,12 @@ export function Nav() {
           <Link
             href="/"
             aria-label="ZetaCode home"
+            className="nav-link"
             style={{
               fontFamily: 'var(--font-display)', fontSize: 'var(--text-md)',
               fontWeight: 600, color: 'var(--color-ink)', textDecoration: 'none',
               display: 'inline-flex', alignItems: 'center', minHeight: '44px',
+              transition: 'opacity var(--duration-fast) var(--ease-standard)',
             }}
           >
             ZetaCode
@@ -81,10 +83,12 @@ export function Nav() {
             {LINKS.map(({ href, label }) => (
               <Link
                 key={href} href={href}
+                className="nav-link"
                 style={{
                   fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)',
                   color: 'var(--color-ink)', textDecoration: 'none', fontWeight: 500,
                   display: 'inline-flex', alignItems: 'center', minHeight: '44px',
+                  transition: 'opacity var(--duration-fast) var(--ease-standard)',
                 }}
               >
                 {label}
@@ -150,6 +154,7 @@ export function Nav() {
           {LINKS.map(({ href, label }) => (
             <Link
               key={href} href={href}
+              className="mobile-nav-link"
               onClick={() => setMenuOpen(false)}
               style={{
                 display: 'block', fontFamily: 'var(--font-display)',
@@ -157,6 +162,7 @@ export function Nav() {
                 textDecoration: 'none', padding: 'var(--space-2) 0',
                 borderBottom: '1px solid var(--color-border)',
                 lineHeight: 'var(--leading-snug)',
+                transition: 'opacity var(--duration-fast) var(--ease-standard)',
               }}
             >
               {label}

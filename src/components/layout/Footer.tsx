@@ -39,6 +39,7 @@ const linkStyle: React.CSSProperties = {
   display: 'block', color: 'var(--color-canvas)', textDecoration: 'none',
   fontFamily: 'var(--font-body)', fontSize: 'var(--text-base)',
   marginBottom: '2px', opacity: 0.72, minHeight: '44px', lineHeight: '44px',
+  transition: 'opacity var(--duration-fast) var(--ease-standard)',
 };
 
 export function Footer() {
@@ -64,7 +65,7 @@ export function Footer() {
                 textTransform: 'uppercase', marginBottom: 'var(--space-2)' }}>
                 {g.heading}
               </p>
-              {g.links.map(l => <Link key={l.href} href={l.href as Route} style={linkStyle}>{l.label}</Link>)}
+              {g.links.map(l => <Link key={l.href} href={l.href as Route} className="footer-link" style={linkStyle}>{l.label}</Link>)}
             </div>
           ))}
         </div>
@@ -89,11 +90,13 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Zeta Code on ${s.label}`}
+                className="footer-link"
                 style={{
                   fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)',
                   color: 'var(--color-canvas)', textDecoration: 'none', opacity: 0.72,
                   minHeight: '44px', minWidth: '44px', display: 'inline-flex',
                   alignItems: 'center', justifyContent: 'center',
+                  transition: 'opacity var(--duration-fast) var(--ease-standard)',
                 }}
               >
                 {s.label}

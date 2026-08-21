@@ -117,6 +117,20 @@ p, li, td, dd { color: inherit; }
   background: rgba(200, 255, 0, 0.05) !important;
 }
 
+/* Nav links — hover/focus state */
+.nav-link:hover,
+.nav-link:focus-visible,
+.mobile-nav-link:hover,
+.mobile-nav-link:focus-visible {
+  opacity: 0.72;
+}
+
+/* Footer links — hover/focus state */
+.footer-link:hover,
+.footer-link:focus-visible {
+  opacity: 1 !important;
+}
+
 /* About principles grid — bottom two cards wider on desktop, single column on mobile */
 @media (max-width: 768px) {
   .about-principles-grid {
