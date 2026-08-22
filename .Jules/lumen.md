@@ -1,0 +1,3 @@
+## 2026-08-22 - Fix non-existent var(--radius-sm) token usage
+**Learning:** Found usage of `var(--radius-sm)` for `borderRadius` in several files (`/services/conversion-websites/page.tsx` and `/about/page.tsx`), but this token does not exist anywhere in `app/globals.css` or the tailwind config. The standard token used directly in other places like `src/components/ui/Button.tsx` is hardcoded `2px` or `4px`.
+**Action:** Replaced non-existent `var(--radius-sm)` token usages with `2px` to match the global button border-radius standard (which is `2px` in `src/components/ui/Button.tsx` and in globals.css `:focus-visible`).
