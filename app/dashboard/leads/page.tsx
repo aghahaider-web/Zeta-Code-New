@@ -20,6 +20,8 @@ export default async function LeadsPage({
   if (searchParams.q) query = query.ilike('full_name', `%${searchParams.q}%`);
 
   const { data: leads } = await query;
+  // ⚡ Bolt: Instantiate Intl.DateTimeFormat once outside the render loop for faster formatting
+  const formatter = new Intl.DateTimeFormat();
 
   return (
     <main style={{ padding: '2rem', fontFamily: 'var(--font-body)' }}>
@@ -50,7 +52,7 @@ export default async function LeadsPage({
                 <td style={{ padding:'0.5rem' }}>{l.company_name}</td>
                 <td style={{ padding:'0.5rem' }}>{l.status}</td>
                 <td style={{ padding:'0.5rem' }}>{l.budget_band}</td>
-                <td style={{ padding:'0.5rem' }}>{new Date(l.created_at).toLocaleDateString()}</td>
+                <td style={{ padding:'0.5rem' }}>{formatter.format(new Date(l.created_at))}</td>
               </tr>
             ))
           ) : (
