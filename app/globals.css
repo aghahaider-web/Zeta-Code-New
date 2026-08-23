@@ -150,6 +150,27 @@ p, li, td, dd { color: inherit; }
    native disclosure triangle; WebKit needs its own pseudo-element killed. */
 summary::-webkit-details-marker { display: none; }
 
+/* Add visual indicator to <summary> so it's clear it expands */
+summary {
+  position: relative;
+}
+summary::after {
+  content: "";
+  position: absolute;
+  right: var(--space-3);
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+  transition: transform var(--duration-fast) var(--ease-standard);
+  pointer-events: none;
+}
+details[open] > summary::after {
+  transform: translateY(-50%) rotate(225deg);
+}
+
 /* Nav responsive — hamburger shows, desktop links hide below 768px */
 @media (max-width: 767px) {
   .nav-desktop-links { display: none !important; }
