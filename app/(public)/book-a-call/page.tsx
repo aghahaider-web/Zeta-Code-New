@@ -3,7 +3,7 @@
 // No external calendar sync, no public user accounts.
 'use client';
 import type { Metadata } from 'next';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Button } from '@/components/ui/Button';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 
@@ -35,8 +35,13 @@ export default function BookACallPage() {
       .catch(() => setSlots([])); // Network error or JSON parse error
   }, []);
 
+  // Performance optimization: Cache Intl.DateTimeFormat to avoid blocking main thread when formatting multiple dates
+  const dateFormatter = useMemo(() => {
+    return new Intl.DateTimeFormat('en-GB', { timeZone: tz, dateStyle: 'medium', timeStyle: 'short' });
+  }, [tz]);
+
   function formatSlot(utc: string) {
-    return new Date(utc).toLocaleString('en-GB', { timeZone: tz, dateStyle: 'medium', timeStyle: 'short' });
+    return dateFormatter.format(new Date(utc));
   }
 
   async function handleSubmit(e: React.FormEvent) {
