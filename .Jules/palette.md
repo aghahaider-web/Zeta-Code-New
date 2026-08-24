@@ -1,7 +1,3 @@
-## 2024-08-13 - Internal Dashboard Tables Need Polish
-**Learning:** Found a pattern where internal dashboard utility views (like `/dashboard/leads`) are often built functionally but missing basic UX/accessibility touches like `aria-label`s on filter inputs, styled buttons, and helpful empty states. It's easy to overlook internal tool UX.
-**Action:** Always check internal dashboard tables and forms for missing labels and empty states. Don't assume internal users don't need a polished experience.
-
-## 2024-08-13 - Add aria-busy to async forms
-**Learning:** Found that while loading indicators visually tell the user that a form is processing, screen readers might not immediately pick this up if the state isn't communicated to assistive technology.
-**Action:** Always add `aria-busy={true}` to form submit buttons (or forms) when handling an async action (like submission) to give screen readers an immediate indication that processing is occurring.
+## 2024-08-24 - Layout-stable active states via text-decoration
+**Learning:** In minimalist, typography-heavy design systems that rely on inline styles, modifying padding, margins, borders, or using pseudoelements (like `::after`) to indicate active state often induces layout shift or requires complex global CSS overrides.
+**Action:** Use native CSS properties designed for typographic enhancement (`textDecoration: 'underline'`, `textDecorationColor: 'var(--color-lime)'`, `textDecorationThickness`, `textUnderlineOffset`) to add distinct, accessible visual wayfinding without risking any layout jitter or complicating the component's dimension logic. Always pair this with `aria-current="page"` for structural semantic alignment.
