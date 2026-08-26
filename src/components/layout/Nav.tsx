@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import type { Route } from 'next';
@@ -12,6 +13,7 @@ const LINKS: { href: Route; label: string }[] = [
 ];
 
 export function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -78,18 +80,26 @@ export function Nav() {
 
           {/* Desktop links */}
           <div className="nav-desktop-links" style={{ display: 'flex', gap: 'var(--space-4)', marginLeft: 'auto', alignItems: 'center' }}>
-            {LINKS.map(({ href, label }) => (
-              <Link
-                key={href} href={href}
-                style={{
-                  fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)',
-                  color: 'var(--color-ink)', textDecoration: 'none', fontWeight: 500,
-                  display: 'inline-flex', alignItems: 'center', minHeight: '44px',
-                }}
-              >
-                {label}
-              </Link>
-            ))}
+            {LINKS.map(({ href, label }) => {
+              const isActive = pathname.startsWith(href);
+              return (
+                <Link
+                  key={href} href={href}
+                  aria-current={isActive ? 'page' : undefined}
+                  style={{
+                    fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)',
+                    color: 'var(--color-ink)', fontWeight: 500,
+                    display: 'inline-flex', alignItems: 'center', minHeight: '44px',
+                    textDecoration: isActive ? 'underline' : 'none',
+                    textDecorationColor: isActive ? 'var(--color-lime)' : 'transparent',
+                    textDecorationThickness: isActive ? '2px' : 'auto',
+                    textUnderlineOffset: isActive ? '4px' : 'auto',
+                  }}
+                >
+                  {label}
+                </Link>
+              );
+            })}
             <MagneticButton href="/book-a-call" variant="primary">Book a discovery call</MagneticButton>
           </div>
 
@@ -147,21 +157,29 @@ export function Nav() {
         }}
       >
         <nav aria-label="Mobile navigation links">
-          {LINKS.map(({ href, label }) => (
-            <Link
-              key={href} href={href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                display: 'block', fontFamily: 'var(--font-display)',
-                fontSize: 'var(--text-xl)', color: 'var(--color-ink)',
-                textDecoration: 'none', padding: 'var(--space-2) 0',
-                borderBottom: '1px solid var(--color-border)',
-                lineHeight: 'var(--leading-snug)',
-              }}
-            >
-              {label}
-            </Link>
-          ))}
+          {LINKS.map(({ href, label }) => {
+            const isActive = pathname.startsWith(href);
+            return (
+              <Link
+                key={href} href={href}
+                onClick={() => setMenuOpen(false)}
+                aria-current={isActive ? 'page' : undefined}
+                style={{
+                  display: 'block', fontFamily: 'var(--font-display)',
+                  fontSize: 'var(--text-xl)', color: 'var(--color-ink)',
+                  padding: 'var(--space-2) 0',
+                  borderBottom: '1px solid var(--color-border)',
+                  lineHeight: 'var(--leading-snug)',
+                  textDecoration: isActive ? 'underline' : 'none',
+                  textDecorationColor: isActive ? 'var(--color-lime)' : 'transparent',
+                  textDecorationThickness: isActive ? '2px' : 'auto',
+                  textUnderlineOffset: isActive ? '4px' : 'auto',
+                }}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </nav>
         <div style={{ marginTop: 'var(--space-5)', display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
           <Link href="/book-a-call" onClick={() => setMenuOpen(false)} style={{
