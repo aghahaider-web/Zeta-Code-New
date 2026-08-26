@@ -1,0 +1,3 @@
+## 2024-08-26 - Main thread blocking via toLocaleString() inside loops
+**Learning:** Calling `Date.prototype.toLocaleString()` (or `toLocaleDateString()`) repeatedly inside loops (like `.map()` in React renders) causes significant main thread blocking due to the overhead of instantiating locale formatters for each item.
+**Action:** Always instantiate `Intl.DateTimeFormat` once outside the loop (using `useMemo` in Client Components, or as a variable outside the loop in Server Components) and call `.format(date)` instead.

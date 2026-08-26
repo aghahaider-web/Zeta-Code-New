@@ -21,6 +21,8 @@ export default async function LeadsPage({
 
   const { data: leads } = await query;
 
+  const dateFormatter = new Intl.DateTimeFormat('en-US');
+
   return (
     <main style={{ padding: '2rem', fontFamily: 'var(--font-body)' }}>
       <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', marginBottom: '1.5rem' }}>
@@ -50,7 +52,7 @@ export default async function LeadsPage({
                 <td style={{ padding:'0.5rem' }}>{l.company_name}</td>
                 <td style={{ padding:'0.5rem' }}>{l.status}</td>
                 <td style={{ padding:'0.5rem' }}>{l.budget_band}</td>
-                <td style={{ padding:'0.5rem' }}>{new Date(l.created_at).toLocaleDateString()}</td>
+                <td style={{ padding:'0.5rem' }}>{dateFormatter.format(new Date(l.created_at))}</td>
               </tr>
             ))
           ) : (
