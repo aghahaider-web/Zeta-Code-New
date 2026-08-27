@@ -3,7 +3,7 @@
 // No external calendar sync, no public user accounts.
 'use client';
 import type { Metadata } from 'next';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Button } from '@/components/ui/Button';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 
@@ -24,6 +24,13 @@ export default function BookACallPage() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
+  // ⚡ Bolt: Cache formatter to avoid expensive re-instantiation in loops
+  const dateFormatter = useMemo(() => new Intl.DateTimeFormat('en-GB', {
+    timeZone: tz,
+    dateStyle: 'medium',
+    timeStyle: 'short'
+  }), [tz]);
+
   useEffect(() => {
     fetch('/api/slots')
       .then(r => r.json())
@@ -36,7 +43,7 @@ export default function BookACallPage() {
   }, []);
 
   function formatSlot(utc: string) {
-    return new Date(utc).toLocaleString('en-GB', { timeZone: tz, dateStyle: 'medium', timeStyle: 'short' });
+    return dateFormatter.format(new Date(utc));
   }
 
   async function handleSubmit(e: React.FormEvent) {
