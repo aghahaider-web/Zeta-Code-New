@@ -14,6 +14,12 @@ export default async function LeadDetail({ params }: { params: { id: string } })
   const { data: activity } = await db.from('lead_activity').select('*')
     .eq('lead_id', params.id).order('created_at', { ascending: false });
 
+  // ⚡ Bolt: Cache formatter to avoid expensive re-instantiation in loops
+  const dateFormatter = new Intl.DateTimeFormat(undefined, {
+    year: 'numeric', month: 'numeric', day: 'numeric',
+    hour: 'numeric', minute: 'numeric', second: 'numeric'
+  });
+
   return (
     <main style={{ padding: '2rem', fontFamily: 'var(--font-body)', maxWidth: '900px' }}>
       <Link href="/dashboard/leads" style={{ fontSize: 'var(--text-sm)', color: 'var(--color-olive)' }}>
@@ -28,7 +34,7 @@ export default async function LeadDetail({ params }: { params: { id: string } })
           ['Country', lead.country], ['Status', lead.status],
           ['Budget', lead.budget_band], ['Industry', lead.industry],
           ['Source', lead.source], ['UTM Source', lead.utm_source],
-          ['Timezone', lead.browser_timezone], ['Created', new Date(lead.created_at).toLocaleString()],
+          ['Timezone', lead.browser_timezone], ['Created', dateFormatter.format(new Date(lead.created_at))],
         ].map(([k, v]) => v ? (<><dt key={k} style={{ color:'var(--color-olive)', fontSize:'var(--text-sm)' }}>{k}</dt><dd key={`${k}v`}>{v}</dd></>) : null)}
       </dl>
       <section style={{ marginBottom: '2rem' }}>
@@ -40,7 +46,7 @@ export default async function LeadDetail({ params }: { params: { id: string } })
         <h2 style={{ fontFamily:'var(--font-display)', fontSize:'var(--text-lg)', marginBottom:'1rem' }}>Activity</h2>
         {activity?.map(a => (
           <p key={a.id} style={{ fontSize:'var(--text-sm)', color:'var(--color-olive)', marginBottom:'0.25rem' }}>
-            {new Date(a.created_at).toLocaleString()} — {a.action_type} ({a.actor})
+            {dateFormatter.format(new Date(a.created_at))} — {a.action_type} ({a.actor})
           </p>
         ))}
       </section>
@@ -49,7 +55,7 @@ export default async function LeadDetail({ params }: { params: { id: string } })
         {notes?.map(n => (
           <div key={n.id} style={{ borderLeft:'2px solid var(--color-border)', paddingLeft:'1rem', marginBottom:'1rem' }}>
             <p>{n.note_body}</p>
-            <p style={{ fontSize:'var(--text-sm)', color:'var(--color-olive)' }}>{new Date(n.created_at).toLocaleString()}</p>
+            <p style={{ fontSize:'var(--text-sm)', color:'var(--color-olive)' }}>{dateFormatter.format(new Date(n.created_at))}</p>
           </div>
         ))}
       </section>
