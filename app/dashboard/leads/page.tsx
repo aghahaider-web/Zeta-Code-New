@@ -9,6 +9,9 @@ const STATUSES = [
   'proposal_sent','won','lost','nurture','archived',
 ] as const;
 
+// ⚡ Bolt: Cache formatter outside component to instantiate only once per server startup, avoiding expensive re-instantiation per request/loop
+const dateFormatter = new Intl.DateTimeFormat();
+
 export default async function LeadsPage({
   searchParams,
 }: { searchParams: { status?: string; q?: string } }) {
@@ -50,7 +53,7 @@ export default async function LeadsPage({
                 <td style={{ padding:'0.5rem' }}>{l.company_name}</td>
                 <td style={{ padding:'0.5rem' }}>{l.status}</td>
                 <td style={{ padding:'0.5rem' }}>{l.budget_band}</td>
-                <td style={{ padding:'0.5rem' }}>{new Date(l.created_at).toLocaleDateString()}</td>
+                <td style={{ padding:'0.5rem' }}>{dateFormatter.format(new Date(l.created_at))}</td>
               </tr>
             ))
           ) : (
