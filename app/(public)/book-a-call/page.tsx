@@ -106,13 +106,15 @@ export default function BookACallPage() {
             }
           </fieldset>
 
-          <label htmlFor="bc-name" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Full name</label>
+          <label htmlFor="bc-name" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Full name *</label>
           <input id="bc-name" type="text" required value={form.full_name} onChange={e => setForm(f => ({ ...f, full_name: e.target.value }))} style={inputStyle} />
 
-          <label htmlFor="bc-email" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Business email</label>
+          <label htmlFor="bc-email" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Business email *</label>
           <input id="bc-email" type="email" required value={form.business_email} onChange={e => setForm(f => ({ ...f, business_email: e.target.value }))} style={inputStyle} />
 
-          <label htmlFor="bc-company" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Company name</label>
+          <label htmlFor="bc-company" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>
+            Company name <span style={{ color: 'var(--color-olive)', fontWeight: 400 }}>(optional)</span>
+          </label>
           <input id="bc-company" type="text" value={form.company_name} onChange={e => setForm(f => ({ ...f, company_name: e.target.value }))} style={inputStyle} />
 
           {(status === 'error' || errorMsg) && (
