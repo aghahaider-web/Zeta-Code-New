@@ -4,6 +4,7 @@
 'use client';
 import type { Metadata } from 'next';
 import { useState, useEffect, useMemo } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 
@@ -94,7 +95,17 @@ export default function BookACallPage() {
               Select a time
             </legend>
             {slots.length === 0
-              ? <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-olive)' }}>No slots currently available. Please check back or request a proposal instead.</p>
+              ? (
+                <div style={{ background: 'var(--color-white)', padding: 'var(--space-3)', border: '1px solid var(--color-border)', borderRadius: '4px' }}>
+                  <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-ink)', fontWeight: 500, marginBottom: 'var(--space-1)' }}>No slots currently available</p>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-ink-muted)', lineHeight: 'var(--leading-normal)', marginBottom: 'var(--space-2)' }}>
+                    My schedule is currently full. Please check back later, or request a proposal instead and we can start the conversation via email.
+                  </p>
+                  <Link href="/request-a-proposal" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '44px', padding: '0 1rem', background: 'transparent', color: 'var(--color-ink)', border: '1px solid var(--color-ink)', borderRadius: '2px', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 600, textDecoration: 'none' }}>
+                    Request a proposal
+                  </Link>
+                </div>
+              )
               : <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-1)' }}>
                   {slots.map(s => (
                     <label key={s.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: 'var(--text-sm)', padding: '0.5rem', border: `1px solid ${selected === s.id ? 'var(--color-ink)' : 'var(--color-border)'}`, borderRadius: '4px', minHeight: '44px' }}>
@@ -106,19 +117,31 @@ export default function BookACallPage() {
             }
           </fieldset>
 
-          <label htmlFor="bc-name" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Full name</label>
-          <input id="bc-name" type="text" required value={form.full_name} onChange={e => setForm(f => ({ ...f, full_name: e.target.value }))} style={inputStyle} />
+          <label htmlFor="bc-name" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>
+            Full name <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span>
+          </label>
+          <input id="bc-name" type="text" required aria-required="true" value={form.full_name} onChange={e => setForm(f => ({ ...f, full_name: e.target.value }))} style={inputStyle} />
 
-          <label htmlFor="bc-email" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Business email</label>
-          <input id="bc-email" type="email" required value={form.business_email} onChange={e => setForm(f => ({ ...f, business_email: e.target.value }))} style={inputStyle} />
+          <label htmlFor="bc-email" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>
+            Business email <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span>
+          </label>
+          <input id="bc-email" type="email" required aria-required="true" value={form.business_email} onChange={e => setForm(f => ({ ...f, business_email: e.target.value }))} style={inputStyle} />
 
-          <label htmlFor="bc-company" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Company name</label>
+          <label htmlFor="bc-company" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>
+            Company name <span style={{ color: 'var(--color-olive)', fontWeight: 400, marginLeft: '4px' }}>(optional)</span>
+          </label>
           <input id="bc-company" type="text" value={form.company_name} onChange={e => setForm(f => ({ ...f, company_name: e.target.value }))} style={inputStyle} />
 
           {(status === 'error' || errorMsg) && (
             <p role="alert" style={{ color: '#B91C1C', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-2)' }}>{errorMsg}</p>
           )}
-          <button type="submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'} style={{ minHeight: '44px', padding: '0 1.75rem', background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: 'pointer', marginTop: 'var(--space-2)' }}>
+          <button type="submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'} style={{ minHeight: '44px', padding: '0 1.75rem', background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: status === 'submitting' ? 'wait' : 'pointer', opacity: status === 'submitting' ? 0.8 : 1, marginTop: 'var(--space-2)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            {status === 'submitting' && (
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation: 'spin 1s linear infinite' }}>
+                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                <style>{`@keyframes spin { 100% { transform: rotate(360deg); } }`}</style>
+              </svg>
+            )}
             {status === 'submitting' ? 'Booking…' : 'Confirm booking'}
           </button>
         </form>
