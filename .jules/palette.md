@@ -1,3 +1,7 @@
 ## 2024-08-27 - Navigation Active States
 **Learning:** Adding active states to navigation links requires careful attention to both accessibility and visual stability. Using `aria-current="page"` correctly communicates the active state to screen readers. For visual styling, relying on `textDecoration` properties (like `underline`, `textDecorationColor`, `textDecorationThickness`, and `textUnderlineOffset`) instead of border or padding changes prevents unwanted layout shifts and jank when navigating between pages.
 **Action:** When implementing active states on text links, always pair `aria-current="page"` with layout-safe CSS properties like `textDecoration` to ensure accessible and visually stable navigation without custom class overhead.
+
+## 2024-08-31 - Explicit Async Feedback & Robust Empty States for Conversion
+**Learning:** In conversion-critical funnels (like booking flows), plain text empty states lead to drop-offs, and implicit async submission states cause double-submissions. Users require explicit visual cues (spinners, wait cursors, disabled/aria-busy states) while waiting, and actionable alternatives when encountering empty data.
+**Action:** When working on forms or funnels, always verify that submit buttons transform during network requests (cursor, opacity, spinner) and that "empty" data returns a structured box with a clear fallback CTA rather than a dead-end text string.

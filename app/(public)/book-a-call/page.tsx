@@ -91,10 +91,18 @@ export default function BookACallPage() {
 
           <fieldset style={{ border: 'none', padding: 0, marginBottom: 'var(--space-4)' }}>
             <legend style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-md)', marginBottom: 'var(--space-3)', fontWeight: 600 }}>
-              Select a time
+              Select a time <span aria-hidden="true" style={{ color: '#B91C1C', marginLeft: '4px' }}>*</span>
             </legend>
             {slots.length === 0
-              ? <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-olive)' }}>No slots currently available. Please check back or request a proposal instead.</p>
+              ? (
+                <div style={{ background: 'var(--color-white)', border: '1px solid var(--color-border)', borderRadius: '4px', padding: 'var(--space-4)', textAlign: 'center' }}>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-ink)', fontWeight: 500, marginBottom: 'var(--space-1)' }}>No slots currently available</p>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-olive)', marginBottom: 'var(--space-3)' }}>Please check back later, or request a full proposal right now.</p>
+                  <a href="/request-a-proposal" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '44px', padding: '0 1rem', border: '1px solid var(--color-ink)', color: 'var(--color-ink)', textDecoration: 'none', borderRadius: '2px', fontWeight: 600, fontSize: 'var(--text-sm)' }}>
+                    Request a proposal
+                  </a>
+                </div>
+              )
               : <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-1)' }}>
                   {slots.map(s => (
                     <label key={s.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: 'var(--text-sm)', padding: '0.5rem', border: `1px solid ${selected === s.id ? 'var(--color-ink)' : 'var(--color-border)'}`, borderRadius: '4px', minHeight: '44px' }}>
@@ -106,19 +114,33 @@ export default function BookACallPage() {
             }
           </fieldset>
 
-          <label htmlFor="bc-name" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Full name</label>
-          <input id="bc-name" type="text" required value={form.full_name} onChange={e => setForm(f => ({ ...f, full_name: e.target.value }))} style={inputStyle} />
+          <label htmlFor="bc-name" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>
+            Full name <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span>
+          </label>
+          <input id="bc-name" type="text" required aria-required="true" value={form.full_name} onChange={e => setForm(f => ({ ...f, full_name: e.target.value }))} style={inputStyle} />
 
-          <label htmlFor="bc-email" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Business email</label>
-          <input id="bc-email" type="email" required value={form.business_email} onChange={e => setForm(f => ({ ...f, business_email: e.target.value }))} style={inputStyle} />
+          <label htmlFor="bc-email" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>
+            Business email <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span>
+          </label>
+          <input id="bc-email" type="email" required aria-required="true" value={form.business_email} onChange={e => setForm(f => ({ ...f, business_email: e.target.value }))} style={inputStyle} />
 
           <label htmlFor="bc-company" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Company name</label>
           <input id="bc-company" type="text" value={form.company_name} onChange={e => setForm(f => ({ ...f, company_name: e.target.value }))} style={inputStyle} />
 
           {(status === 'error' || errorMsg) && (
-            <p role="alert" style={{ color: '#B91C1C', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-2)' }}>{errorMsg}</p>
+             <p role="alert" style={{ color: '#B91C1C', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-2)' }}>{errorMsg}</p>
           )}
-          <button type="submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'} style={{ minHeight: '44px', padding: '0 1.75rem', background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: 'pointer', marginTop: 'var(--space-2)' }}>
+          <button type="submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'} style={{ minHeight: '44px', padding: '0 1.75rem', background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: status === 'submitting' ? 'wait' : 'pointer', opacity: status === 'submitting' ? 0.7 : 1, marginTop: 'var(--space-2)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            {status === 'submitting' && (
+              <svg style={{ animation: 'spin 1s linear infinite' }} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+              </svg>
+            )}
+            <style>{`
+              @keyframes spin {
+                to { transform: rotate(360deg); }
+              }
+            `}</style>
             {status === 'submitting' ? 'Booking…' : 'Confirm booking'}
           </button>
         </form>
