@@ -106,11 +106,11 @@ export default function BookACallPage() {
             }
           </fieldset>
 
-          <label htmlFor="bc-name" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Full name</label>
-          <input id="bc-name" type="text" required value={form.full_name} onChange={e => setForm(f => ({ ...f, full_name: e.target.value }))} style={inputStyle} />
+          <label htmlFor="bc-name" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Full name <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <input id="bc-name" type="text" required aria-required="true" value={form.full_name} onChange={e => setForm(f => ({ ...f, full_name: e.target.value }))} style={inputStyle} />
 
-          <label htmlFor="bc-email" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Business email</label>
-          <input id="bc-email" type="email" required value={form.business_email} onChange={e => setForm(f => ({ ...f, business_email: e.target.value }))} style={inputStyle} />
+          <label htmlFor="bc-email" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Business email <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <input id="bc-email" type="email" required aria-required="true" value={form.business_email} onChange={e => setForm(f => ({ ...f, business_email: e.target.value }))} style={inputStyle} />
 
           <label htmlFor="bc-company" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Company name</label>
           <input id="bc-company" type="text" value={form.company_name} onChange={e => setForm(f => ({ ...f, company_name: e.target.value }))} style={inputStyle} />
@@ -118,8 +118,13 @@ export default function BookACallPage() {
           {(status === 'error' || errorMsg) && (
             <p role="alert" style={{ color: '#B91C1C', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-2)' }}>{errorMsg}</p>
           )}
-          <button type="submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'} style={{ minHeight: '44px', padding: '0 1.75rem', background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: 'pointer', marginTop: 'var(--space-2)' }}>
-            {status === 'submitting' ? 'Booking…' : 'Confirm booking'}
+          <button type="submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'} style={{ minHeight: '44px', padding: '0 1.75rem', background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: status === 'submitting' ? 'wait' : 'pointer', opacity: status === 'submitting' ? 0.7 : 1, marginTop: 'var(--space-2)', display: 'inline-flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+            {status === 'submitting' ? (
+              <>
+                <svg className="animate-spin" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56" /></svg>
+                Booking…
+              </>
+            ) : 'Confirm booking'}
           </button>
         </form>
         <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-olive)', marginTop: 'var(--space-4)' }}>

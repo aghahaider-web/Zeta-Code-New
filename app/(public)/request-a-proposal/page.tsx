@@ -76,26 +76,26 @@ export default function RequestProposalPage() {
         <form onSubmit={handleSubmit} noValidate>
           <input name="honeypot" value={form.honeypot} onChange={e => setForm(f => ({ ...f, honeypot: e.target.value }))} style={{ display: 'none' }} tabIndex={-1} aria-hidden="true" />
 
-          <label htmlFor="rp-name" style={lbl}>Full name *</label>
-          <input id="rp-name" type="text" required value={form.full_name} onChange={e => setForm(f => ({ ...f, full_name: e.target.value }))} style={inp} />
+          <label htmlFor="rp-name" style={lbl}>Full name <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <input id="rp-name" type="text" required aria-required="true" value={form.full_name} onChange={e => setForm(f => ({ ...f, full_name: e.target.value }))} style={inp} />
 
-          <label htmlFor="rp-email" style={lbl}>Business email *</label>
-          <input id="rp-email" type="email" required value={form.business_email} onChange={e => setForm(f => ({ ...f, business_email: e.target.value }))} style={inp} />
+          <label htmlFor="rp-email" style={lbl}>Business email <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <input id="rp-email" type="email" required aria-required="true" value={form.business_email} onChange={e => setForm(f => ({ ...f, business_email: e.target.value }))} style={inp} />
 
-          <label htmlFor="rp-company" style={lbl}>Company name *</label>
-          <input id="rp-company" type="text" required value={form.company_name} onChange={e => setForm(f => ({ ...f, company_name: e.target.value }))} style={inp} />
+          <label htmlFor="rp-company" style={lbl}>Company name <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <input id="rp-company" type="text" required aria-required="true" value={form.company_name} onChange={e => setForm(f => ({ ...f, company_name: e.target.value }))} style={inp} />
 
-          <label htmlFor="rp-country" style={lbl}>Country / market *</label>
-          <input id="rp-country" type="text" required value={form.country} onChange={e => setForm(f => ({ ...f, country: e.target.value }))} style={inp} />
+          <label htmlFor="rp-country" style={lbl}>Country / market <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <input id="rp-country" type="text" required aria-required="true" value={form.country} onChange={e => setForm(f => ({ ...f, country: e.target.value }))} style={inp} />
 
           <label htmlFor="rp-url" style={lbl}>Current website URL (if applicable)</label>
           <input id="rp-url" type="url" value={form.website_url} onChange={e => setForm(f => ({ ...f, website_url: e.target.value }))} style={inp} placeholder="https://" />
 
-          <label htmlFor="rp-industry" style={lbl}>Industry *</label>
-          <input id="rp-industry" type="text" required value={form.industry} onChange={e => setForm(f => ({ ...f, industry: e.target.value }))} style={inp} />
+          <label htmlFor="rp-industry" style={lbl}>Industry <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <input id="rp-industry" type="text" required aria-required="true" value={form.industry} onChange={e => setForm(f => ({ ...f, industry: e.target.value }))} style={inp} />
 
           <fieldset style={{ border: 'none', padding: 0, marginBottom: 'var(--space-2)' }}>
-            <legend style={lbl}>Services of interest *</legend>
+            <legend style={lbl}>Services of interest <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></legend>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-1)', marginBottom: 'var(--space-2)' }}>
               {SERVICES.map(s => (
                 <label key={s} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: 'var(--text-sm)', padding: '6px 12px', border: `1px solid ${form.services_interested.includes(s) ? 'var(--color-ink)' : 'var(--color-border)'}`, borderRadius: '2px', cursor: 'pointer', minHeight: '44px' }}>
@@ -106,20 +106,20 @@ export default function RequestProposalPage() {
             </div>
           </fieldset>
 
-          <label htmlFor="rp-challenge" style={lbl}>Current business challenge *</label>
-          <textarea id="rp-challenge" required rows={3} value={form.business_challenge} onChange={e => setForm(f => ({ ...f, business_challenge: e.target.value }))} style={{ ...inp, resize: 'vertical' }} />
+          <label htmlFor="rp-challenge" style={lbl}>Current business challenge <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <textarea id="rp-challenge" required aria-required="true" rows={3} value={form.business_challenge} onChange={e => setForm(f => ({ ...f, business_challenge: e.target.value }))} style={{ ...inp, resize: 'vertical' }} />
 
-          <label htmlFor="rp-objective" style={lbl}>Primary objective *</label>
-          <input id="rp-objective" type="text" required value={form.primary_objective} onChange={e => setForm(f => ({ ...f, primary_objective: e.target.value }))} style={inp} />
+          <label htmlFor="rp-objective" style={lbl}>Primary objective <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <input id="rp-objective" type="text" required aria-required="true" value={form.primary_objective} onChange={e => setForm(f => ({ ...f, primary_objective: e.target.value }))} style={inp} />
 
-          <label htmlFor="rp-budget" style={lbl}>Approximate budget range *</label>
-          <select id="rp-budget" required value={form.budget_band} onChange={e => setForm(f => ({ ...f, budget_band: e.target.value }))} style={{ ...inp, background: 'white' }}>
+          <label htmlFor="rp-budget" style={lbl}>Approximate budget range <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <select id="rp-budget" required aria-required="true" value={form.budget_band} onChange={e => setForm(f => ({ ...f, budget_band: e.target.value }))} style={{ ...inp, background: 'white' }}>
             <option value="">Select a range</option>
             {BUDGETS.map(b => <option key={b} value={b}>{b}</option>)}
           </select>
 
-          <label htmlFor="rp-timeline" style={lbl}>Desired timeline *</label>
-          <input id="rp-timeline" type="text" required value={form.desired_timeline} onChange={e => setForm(f => ({ ...f, desired_timeline: e.target.value }))} style={inp} placeholder="e.g. 4–6 weeks, ASAP, Q1 2026" />
+          <label htmlFor="rp-timeline" style={lbl}>Desired timeline <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
+          <input id="rp-timeline" type="text" required aria-required="true" value={form.desired_timeline} onChange={e => setForm(f => ({ ...f, desired_timeline: e.target.value }))} style={inp} placeholder="e.g. 4–6 weeks, ASAP, Q1 2026" />
 
           <label htmlFor="rp-details" style={lbl}>Project details (optional)</label>
           <textarea id="rp-details" rows={4} value={form.project_details} onChange={e => setForm(f => ({ ...f, project_details: e.target.value }))} style={{ ...inp, resize: 'vertical' }} />
@@ -131,8 +131,13 @@ export default function RequestProposalPage() {
 
           {errorMsg && <p role="alert" style={{ color: '#B91C1C', fontSize: 'var(--text-sm)', marginBottom: 'var(--space-2)' }}>{errorMsg}</p>}
 
-          <button type="submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'} style={{ minHeight: '44px', padding: '0 1.75rem', background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: 'pointer' }}>
-            {status === 'submitting' ? 'Sending…' : 'Submit request'}
+          <button type="submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'} style={{ minHeight: '44px', padding: '0 1.75rem', background: 'var(--color-lime)', color: 'var(--color-ink)', border: 'none', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-sm)', cursor: status === 'submitting' ? 'wait' : 'pointer', opacity: status === 'submitting' ? 0.7 : 1, display: 'inline-flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+            {status === 'submitting' ? (
+              <>
+                <svg className="animate-spin" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56" /></svg>
+                Sending…
+              </>
+            ) : 'Submit request'}
           </button>
         </form>
       </div>
