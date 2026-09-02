@@ -1,0 +1,3 @@
+## 2025-03-01 - Consolidate Buttons and Ensure Correct Radius Token Usage
+**Learning:** Found raw `Link` elements in service and about pages styled as buttons. They used a non-existent `var(--radius-sm)` variable. The `globals.css` forces hardcoded 2px radii instead of variables. Replacing with the centralized `<Button>` component resolves both the UI consistency issue and eliminates the bad token, without needing to hardcode 2px everywhere.
+**Action:** Always verify if a CSS variable being used actually exists in `globals.css`. Prefer using centralized UI components like `@/components/ui/Button` rather than manually styling links to keep design choices (like the 2px radius) DRY and consistent.
