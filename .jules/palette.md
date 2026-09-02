@@ -1,3 +1,3 @@
-## 2024-08-27 - Navigation Active States
-**Learning:** Adding active states to navigation links requires careful attention to both accessibility and visual stability. Using `aria-current="page"` correctly communicates the active state to screen readers. For visual styling, relying on `textDecoration` properties (like `underline`, `textDecorationColor`, `textDecorationThickness`, and `textUnderlineOffset`) instead of border or padding changes prevents unwanted layout shifts and jank when navigating between pages.
-**Action:** When implementing active states on text links, always pair `aria-current="page"` with layout-safe CSS properties like `textDecoration` to ensure accessible and visually stable navigation without custom class overhead.
+## 2024-05-18 - Visual asterisk and loading state for login form
+**Learning:** Adding a visual indicator for required inputs and a loading state to async buttons greatly enhances form UX and accessibility. Adding `aria-hidden="true"` to the visual asterisk prevents screen readers from redundantly announcing "Email star".
+**Action:** When working on forms, always add a visual required indicator with `aria-hidden="true"` alongside `aria-required="true"` on mandatory inputs. For async submissions, completely transform the submit button state (change cursor to `wait`, drop opacity, and display a spinning SVG).
