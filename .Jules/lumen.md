@@ -1,0 +1,3 @@
+## 2023-10-27 - Hardcoded Border Radius
+**Learning:** Found instances of `var(--radius-sm)` being used for `borderRadius` in `app/(public)/services/conversion-websites/page.tsx` and `app/(public)/about/page.tsx`. However, the memory strictly mentions that "The project's design system standardizes button and UI border radius to hardcoded values of `2px` or `4px` rather than using CSS variables for radius (e.g., `var(--radius-sm)` does not exist and should not be used)." Additionally, `app/globals.css` does not define `--radius-sm`. It falls back to default browser behavior since the variable does not exist.
+**Action:** Replace `var(--radius-sm)` with `2px` to match the design system tokens for buttons and maintain consistency.
