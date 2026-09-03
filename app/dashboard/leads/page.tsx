@@ -9,6 +9,10 @@ const STATUSES = [
   'proposal_sent','won','lost','nurture','archived',
 ] as const;
 
+// ⚡ Bolt: Cache Intl.DateTimeFormat to avoid repeated instantiation overhead in the render loop.
+// Creating a new formatter for each lead in a large list blocks the main thread.
+const dateFormatter = new Intl.DateTimeFormat('en-US');
+
 export default async function LeadsPage({
   searchParams,
 }: { searchParams: { status?: string; q?: string } }) {
@@ -50,7 +54,7 @@ export default async function LeadsPage({
                 <td style={{ padding:'0.5rem' }}>{l.company_name}</td>
                 <td style={{ padding:'0.5rem' }}>{l.status}</td>
                 <td style={{ padding:'0.5rem' }}>{l.budget_band}</td>
-                <td style={{ padding:'0.5rem' }}>{new Date(l.created_at).toLocaleDateString()}</td>
+                <td style={{ padding:'0.5rem' }}>{dateFormatter.format(new Date(l.created_at))}</td>
               </tr>
             ))
           ) : (
