@@ -65,7 +65,7 @@ export default function HomePage() {
       <section aria-labelledby="problem-heading" style={{ background: 'var(--color-white)', padding: 'var(--space-7) var(--space-5)' }}>
         <div style={W}>
           <SectionLabel>The problem</SectionLabel>
-          <h2 id="problem-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-2xl)', lineHeight: 'var(--leading-snug)', marginBottom: 'var(--space-4)', maxWidth: '700px' }}>
+          <h2 id="problem-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-2xl)', marginBottom: 'var(--space-3)', maxWidth: '700px' }}>
             Most websites don't fail loudly. They fail quietly.
           </h2>
           <p style={{ fontSize: 'var(--text-base)', lineHeight: 'var(--leading-normal)', color: 'var(--color-ink-muted)', maxWidth: '640px', marginBottom: 'var(--space-4)' }}>
@@ -86,7 +86,7 @@ export default function HomePage() {
       <section aria-labelledby="outcome-heading" style={{ ...DARK, padding: 'var(--space-7) var(--space-5)' }}>
         <div style={W}>
           <SectionLabel>What changes</SectionLabel>
-          <h2 id="outcome-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-2xl)', lineHeight: 'var(--leading-snug)', marginBottom: 'var(--space-4)', maxWidth: '700px', color: 'var(--color-canvas)' }}>
+          <h2 id="outcome-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-2xl)', marginBottom: 'var(--space-3)', maxWidth: '700px', color: 'var(--color-canvas)' }}>
             From passive website to active sales asset.
           </h2>
           <p style={{ fontSize: 'var(--text-base)', lineHeight: 'var(--leading-normal)', color: 'var(--color-canvas)', opacity: 0.8, maxWidth: '600px' }}>
@@ -184,7 +184,7 @@ export default function HomePage() {
               { title: 'Property & interiors', desc: 'Real estate, architecture, and interior design firms whose website should reflect the standard of their work.', href: '/industries/property-interiors' },
               { title: 'Health & clinics', desc: 'Clinics and appointment-driven health businesses where trust and booking simplicity decide the conversion.', href: '/industries/health-clinics' },
             ].map(i => (
-              <a key={i.href} href={i.href} style={{ display: 'block', textDecoration: 'none', background: 'var(--color-canvas)', border: '1px solid var(--color-border)', borderRadius: '4px', padding: 'var(--space-4)', color: 'var(--color-ink)' }}>
+              <a key={i.href} href={i.href} className="industries-card" style={{ display: 'block', textDecoration: 'none', background: 'var(--color-canvas)', border: '1px solid var(--color-border)', borderRadius: '4px', padding: 'var(--space-4)', color: 'var(--color-ink)', transition: 'border-color var(--duration-fast) var(--ease-standard)' }}>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', marginBottom: 'var(--space-1)' }}>{i.title}</h3>
                 <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-ink-muted)', lineHeight: 'var(--leading-normal)' }}>{i.desc}</p>
               </a>
@@ -266,7 +266,7 @@ export default function HomePage() {
       <section aria-labelledby="founder-heading" style={{ background: 'var(--color-canvas)', padding: 'var(--space-7) var(--space-5)' }}>
         <div style={{ ...W, maxWidth: '720px' }}>
           <SectionLabel>Who's behind this</SectionLabel>
-          <h2 id="founder-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', marginBottom: 'var(--space-4)' }}>
+          <h2 id="founder-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-xl)', marginBottom: 'var(--space-3)' }}>
             Built by someone who's done this before.
           </h2>
           <p style={{ fontSize: 'var(--text-base)', lineHeight: 'var(--leading-normal)', color: 'var(--color-ink-muted)', marginBottom: 'var(--space-2)' }}>
@@ -305,7 +305,7 @@ export default function HomePage() {
       {/* ── 11. FINAL CONVERSION ── */}
       <section aria-labelledby="cta-heading" style={{ ...DARK, padding: 'var(--space-8) var(--space-5)' }}>
         <div style={{ ...W, maxWidth: '720px', textAlign: 'center' }}>
-          <h2 id="cta-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-2xl)', color: 'var(--color-canvas)', lineHeight: 'var(--leading-snug)', marginBottom: 'var(--space-3)' }}>
+          <h2 id="cta-heading" style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-2xl)', color: 'var(--color-canvas)', marginBottom: 'var(--space-3)' }}>
             Ready to stop settling?
           </h2>
           <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-canvas)', opacity: 0.8, marginBottom: 'var(--space-5)' }}>
