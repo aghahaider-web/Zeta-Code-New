@@ -18,6 +18,7 @@ type Slot = { id: string; start_utc: string; end_utc: string };
 
 export default function BookACallPage() {
   const [slots, setSlots] = useState<Slot[]>([]);
+  const [isLoadingSlots, setIsLoadingSlots] = useState(true);
   const [selected, setSelected] = useState('');
   const [tz] = useState(() => Intl.DateTimeFormat().resolvedOptions().timeZone);
   const [form, setForm] = useState({ full_name: '', business_email: '', company_name: '', honeypot: '' });
@@ -39,7 +40,8 @@ export default function BookACallPage() {
         if (Array.isArray(data)) setSlots(data);
         else setSlots([]);
       })
-      .catch(() => setSlots([])); // Network error or JSON parse error
+      .catch(() => setSlots([])) // Network error or JSON parse error
+      .finally(() => setIsLoadingSlots(false));
   }, []);
 
   function formatSlot(utc: string) {
@@ -93,17 +95,29 @@ export default function BookACallPage() {
             <legend style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-md)', marginBottom: 'var(--space-3)', fontWeight: 600 }}>
               Select a time
             </legend>
-            {slots.length === 0
-              ? <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-olive)' }}>No slots currently available. Please check back or request a proposal instead.</p>
-              : <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-1)' }}>
-                  {slots.map(s => (
-                    <label key={s.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: 'var(--text-sm)', padding: '0.5rem', border: `1px solid ${selected === s.id ? 'var(--color-ink)' : 'var(--color-border)'}`, borderRadius: '4px', minHeight: '44px' }}>
-                      <input type="radio" name="slot" value={s.id} checked={selected === s.id} onChange={() => setSelected(s.id)} style={{ accentColor: 'var(--color-ink)' }} />
-                      {formatSlot(s.start_utc)}
-                    </label>
-                  ))}
-                </div>
-            }
+            {isLoadingSlots ? (
+              <div aria-live="polite" aria-busy="true" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: 'var(--text-sm)', color: 'var(--color-olive)', padding: 'var(--space-2) 0' }}>
+                <svg className="animate-spin" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56" /></svg>
+                Loading available times...
+              </div>
+            ) : slots.length === 0 ? (
+              <div style={{ background: 'var(--color-white)', border: '1px solid var(--color-border)', borderRadius: '4px', padding: 'var(--space-4)', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)', alignItems: 'flex-start' }}>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-ink-muted)', lineHeight: 'var(--leading-normal)' }}>
+                  No discovery slots are currently available. We open new slots weekly.
+                  If your enquiry is urgent, you can request a proposal directly.
+                </p>
+                <Button href="/request-a-proposal" variant="secondary">Request a proposal</Button>
+              </div>
+            ) : (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 'var(--space-1)' }}>
+                {slots.map(s => (
+                  <label key={s.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: 'var(--text-sm)', padding: '0.5rem', border: `1px solid ${selected === s.id ? 'var(--color-ink)' : 'var(--color-border)'}`, borderRadius: '4px', minHeight: '44px' }}>
+                    <input type="radio" name="slot" value={s.id} checked={selected === s.id} onChange={() => setSelected(s.id)} style={{ accentColor: 'var(--color-ink)' }} />
+                    {formatSlot(s.start_utc)}
+                  </label>
+                ))}
+              </div>
+            )}
           </fieldset>
 
           <label htmlFor="bc-name" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '4px' }}>Full name <span aria-hidden="true" style={{ color: '#B91C1C' }}>*</span></label>
