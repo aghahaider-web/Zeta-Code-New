@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { ServicesHeadline } from '@/components/ui/ServicesHeadline';
+import { Button } from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'About ZetaCode',
@@ -68,23 +69,9 @@ export default function AboutPage() {
       {/* Footer CTA */}
       <section style={{ padding: 'var(--space-6) var(--space-5)' }}>
         <div style={{ ...W, maxWidth: '600px' }}>
-          <Link
-            href="/book-a-call"
-            className="about-cta"
-            style={{
-              display: 'inline-block',
-              background: 'var(--color-lime)',
-              color: 'var(--color-ink)',
-              padding: 'var(--space-3) var(--space-4)',
-              fontSize: 'var(--text-base)',
-              fontWeight: 600,
-              textDecoration: 'none',
-              borderRadius: 'var(--radius-sm)',
-              transition: `background var(--duration-fast) var(--ease-standard)`,
-            }}
-          >
+          <Button href="/book-a-call" variant="primary">
             Ready to talk? Book a discovery call
-          </Link>
+          </Button>
         </div>
       </section>
     </main>

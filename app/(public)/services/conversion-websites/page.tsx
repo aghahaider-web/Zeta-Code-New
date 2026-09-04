@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { ServicesHeadline } from '@/components/ui/ServicesHeadline';
+import { Button } from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: 'Conversion Website Design & Development',
@@ -49,39 +50,8 @@ export default function ConversionWebsitesPage() {
             Strategy, structure, and message come before visual design.
           </p>
           <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
-            <Link
-              href="/book-a-call"
-              style={{
-                display: 'inline-block',
-                background: 'var(--color-lime)',
-                color: 'var(--color-ink)',
-                padding: 'var(--space-3) var(--space-4)',
-                fontSize: 'var(--text-base)',
-                fontWeight: 600,
-                textDecoration: 'none',
-                borderRadius: 'var(--radius-sm)',
-                transition: `background var(--duration-fast) var(--ease-standard)`,
-              }}
-            >
-              Book a discovery call
-            </Link>
-            <Link
-              href="/request-a-proposal"
-              style={{
-                display: 'inline-block',
-                background: 'var(--color-white)',
-                color: 'var(--color-ink)',
-                border: '1px solid var(--color-border)',
-                padding: 'var(--space-3) var(--space-4)',
-                fontSize: 'var(--text-base)',
-                fontWeight: 600,
-                textDecoration: 'none',
-                borderRadius: 'var(--radius-sm)',
-                transition: `all var(--duration-fast) var(--ease-standard)`,
-              }}
-            >
-              Request a proposal
-            </Link>
+            <Button href="/book-a-call" variant="primary">Book a discovery call</Button>
+            <Button href="/request-a-proposal" variant="secondary">Request a proposal</Button>
           </div>
         </div>
       </section>
