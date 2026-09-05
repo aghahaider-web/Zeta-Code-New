@@ -1,0 +1,19 @@
+
+> zetacode@0.1.0 dev /app
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3001
+  - Experiments (use with caution):
+    · typedRoutes
+
+ ✓ Starting...
+ ✓ Ready in 1770ms
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 1631ms (128 modules)
+ ○ Compiling /dashboard/login ...
+ ✓ Compiled /dashboard/login in 5.5s (616 modules)
+ GET /dashboard/login 200 in 6252ms
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (107kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (258kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
