@@ -1,0 +1,3 @@
+## 2024-05-18 - Industries Hover Fix
+**Learning:** Because the codebase heavily uses React inline styles, explicit global utility classes (in globals.css) must be used for pseudo-classes like `:hover` and `:focus-visible` to preserve interactive visual polish. The `industries-card` class exists in `app/globals.css` but wasn't originally applied in `app/(public)/page.tsx`.
+**Action:** Always check `app/globals.css` for existing hover classes designed for specific components before adding inline styles or trying to build hover effects from scratch. Apply existing hover effect classes and ensure smooth micro-transitions using standard duration (`var(--duration-fast)`) and easing (`var(--ease-standard)`).
