@@ -9,6 +9,10 @@ const STATUSES = [
   'proposal_sent','won','lost','nurture','archived',
 ] as const;
 
+// ⚡ Bolt Optimization: Cache Intl.DateTimeFormat instance outside the Server Component
+// to avoid repeatedly instantiating it inside the render loop, which blocks the main thread.
+const dateFormatter = new Intl.DateTimeFormat('en-US');
+
 export default async function LeadsPage({
   searchParams,
 }: { searchParams: { status?: string; q?: string } }) {
@@ -50,7 +54,7 @@ export default async function LeadsPage({
                 <td style={{ padding:'0.5rem' }}>{l.company_name}</td>
                 <td style={{ padding:'0.5rem' }}>{l.status}</td>
                 <td style={{ padding:'0.5rem' }}>{l.budget_band}</td>
-                <td style={{ padding:'0.5rem' }}>{new Date(l.created_at).toLocaleDateString()}</td>
+                <td style={{ padding:'0.5rem' }}>{dateFormatter.format(new Date(l.created_at))}</td>
               </tr>
             ))
           ) : (
