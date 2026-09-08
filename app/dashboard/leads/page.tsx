@@ -55,13 +55,20 @@ export default async function LeadsPage({
             ))
           ) : (
             <tr>
-              <td colSpan={6} style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-ink-muted)' }}>
-                <p style={{ marginBottom: '0.5rem' }}>No leads found.</p>
-                {(searchParams.q || searchParams.status) && (
-                  <Link href="/dashboard/leads" style={{ color: 'var(--color-ink)', textDecoration: 'underline', fontWeight: 500 }}>
-                    Clear filters
-                  </Link>
-                )}
+              <td colSpan={6} style={{ padding: '0' }}>
+                <div style={{ margin: '2rem 0', padding: '3rem', border: '1px dashed var(--color-border)', borderRadius: '4px', textAlign: 'center', background: 'var(--color-canvas)', color: 'var(--color-ink-muted)' }}>
+                  <p style={{ marginBottom: '1rem', fontSize: 'var(--text-base)', color: 'var(--color-ink)' }}>No leads found.</p>
+                  {(searchParams.q || searchParams.status) ? (
+                    <>
+                      <p style={{ marginBottom: '1rem', fontSize: 'var(--text-sm)' }}>Try adjusting your filters or search query.</p>
+                      <Link href="/dashboard/leads" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '36px', padding: '0 1rem', background: 'var(--color-canvas)', color: 'var(--color-ink)', border: '1px solid var(--color-ink)', borderRadius: '2px', fontFamily: 'var(--font-body)', fontWeight: 500, fontSize: 'var(--text-sm)', textDecoration: 'none' }}>
+                        Clear filters
+                      </Link>
+                    </>
+                  ) : (
+                    <p style={{ fontSize: 'var(--text-sm)' }}>When you receive new leads, they will appear here.</p>
+                  )}
+                </div>
               </td>
             </tr>
           )}
