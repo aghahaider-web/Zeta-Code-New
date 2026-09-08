@@ -1,0 +1,3 @@
+## 2024-05-18 - Missing var(--radius-sm) token usage
+**Learning:** Some inline components (like `Link`s behaving as buttons in `/about/page.tsx` and `/services/conversion-websites/page.tsx`) are referencing a non-existent `var(--radius-sm)` CSS variable, falling back to 0 radius. The codebase standardizes border-radius to a hardcoded `2px` for primary interactive elements (like `Button.tsx`).
+**Action:** Instead of adding an arbitrary `--radius-sm` token, I should refactor these inline `Link` tags to use the centralized `<Button>` component where appropriate, or replace `var(--radius-sm)` with the standard `2px` to ensure consistent design system application across the site.
