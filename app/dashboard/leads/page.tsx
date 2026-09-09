@@ -55,13 +55,17 @@ export default async function LeadsPage({
             ))
           ) : (
             <tr>
-              <td colSpan={6} style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-ink-muted)' }}>
-                <p style={{ marginBottom: '0.5rem' }}>No leads found.</p>
-                {(searchParams.q || searchParams.status) && (
-                  <Link href="/dashboard/leads" style={{ color: 'var(--color-ink)', textDecoration: 'underline', fontWeight: 500 }}>
-                    Clear filters
-                  </Link>
-                )}
+              <td colSpan={6} style={{ padding: '2rem 0' }}>
+                <div style={{ padding: '3rem 2rem', background: 'var(--color-canvas)', borderRadius: '4px', textAlign: 'center', color: 'var(--color-ink-muted)' }}>
+                  <p style={{ marginBottom: '0.5rem' }}>
+                    {(searchParams.q || searchParams.status) ? 'No leads match your current filters.' : 'No leads exist yet.'}
+                  </p>
+                  {(searchParams.q || searchParams.status) && (
+                    <Link href="/dashboard/leads" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: '44px', padding: '0 1.5rem', border: '1px solid var(--color-ink)', borderRadius: '2px', textDecoration: 'none', color: 'var(--color-ink)', marginTop: '1rem', fontWeight: 500, fontSize: 'var(--text-sm)' }}>
+                      Clear filters
+                    </Link>
+                  )}
+                </div>
               </td>
             </tr>
           )}
