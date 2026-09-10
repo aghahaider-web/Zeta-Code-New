@@ -5,3 +5,6 @@
 ## 2024-08-13 - Add aria-busy to async forms
 **Learning:** Found that while loading indicators visually tell the user that a form is processing, screen readers might not immediately pick this up if the state isn't communicated to assistive technology.
 **Action:** Always add `aria-busy={true}` to form submit buttons (or forms) when handling an async action (like submission) to give screen readers an immediate indication that processing is occurring.
+## 2024-05-24 - Async State and Accessibility for Custom-Styled Forms
+**Learning:** Hard-coded basic inline styles for forms often miss important accessibility markers for screen readers (`aria-required="true"`) and lack clear visual state separation (like hiding empty state and transforming the submit button fully with SVGs + `cursor: wait`) that make it clear to both sighted and assistive tech users that async operations are occurring.
+**Action:** Always add visual asterisks paired with `aria-hidden="true"` and `aria-required="true"` on inputs. Completely transform the button state (adding spinning SVG, `cursor: wait`, `opacity` drop, and `aria-busy="true"`) when forms undergo async submission.
