@@ -51,6 +51,7 @@ export default function ConversionWebsitesPage() {
           <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
             <Link
               href="/book-a-call"
+              className="conversion-websites-primary"
               style={{
                 display: 'inline-block',
                 background: 'var(--color-lime)',
@@ -59,7 +60,7 @@ export default function ConversionWebsitesPage() {
                 fontSize: 'var(--text-base)',
                 fontWeight: 600,
                 textDecoration: 'none',
-                borderRadius: 'var(--radius-sm)',
+                borderRadius: '2px',
                 transition: `background var(--duration-fast) var(--ease-standard)`,
               }}
             >
@@ -67,6 +68,7 @@ export default function ConversionWebsitesPage() {
             </Link>
             <Link
               href="/request-a-proposal"
+              className="conversion-websites-secondary"
               style={{
                 display: 'inline-block',
                 background: 'var(--color-white)',
@@ -76,7 +78,7 @@ export default function ConversionWebsitesPage() {
                 fontSize: 'var(--text-base)',
                 fontWeight: 600,
                 textDecoration: 'none',
-                borderRadius: 'var(--radius-sm)',
+                borderRadius: '2px',
                 transition: `all var(--duration-fast) var(--ease-standard)`,
               }}
             >
