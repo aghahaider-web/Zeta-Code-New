@@ -1,7 +1,3 @@
-## 2024-08-13 - Internal Dashboard Tables Need Polish
-**Learning:** Found a pattern where internal dashboard utility views (like `/dashboard/leads`) are often built functionally but missing basic UX/accessibility touches like `aria-label`s on filter inputs, styled buttons, and helpful empty states. It's easy to overlook internal tool UX.
-**Action:** Always check internal dashboard tables and forms for missing labels and empty states. Don't assume internal users don't need a polished experience.
-
-## 2024-08-13 - Add aria-busy to async forms
-**Learning:** Found that while loading indicators visually tell the user that a form is processing, screen readers might not immediately pick this up if the state isn't communicated to assistive technology.
-**Action:** Always add `aria-busy={true}` to form submit buttons (or forms) when handling an async action (like submission) to give screen readers an immediate indication that processing is occurring.
+## 2024-09-13 - Dashboard Login Accessibility & Feedback
+**Learning:** Next.js auth pages often lack loading feedback natively, leaving users wondering if their click registered, while missing explicit 'required' a11y markers create friction for screen readers despite HTML validation existing. Adding `aria-required="true"` alongside visual markers and updating button styles with flex+spinner makes async forms far more intuitive.
+**Action:** When working on async forms, explicitly check for `aria-required`, visual required indicators (`aria-hidden="true"`), and `aria-busy` combined with clear loading UI on the submit button.
