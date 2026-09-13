@@ -1,3 +1,3 @@
-## 2023-10-27 - Caching Intl.DateTimeFormat
-**Learning:** Calling Date.prototype.toLocaleString() repeatedly (e.g. mapping over arrays in components) can cause severe main thread blocking and drop performance.
-**Action:** When formatting multiple dates, cache Intl.DateTimeFormat instances (using useMemo where appropriate) and use .format() instead.
+## 2024-05-24 - Do Not Bypass Middleware for Visual Checks
+**Learning:** Bypassing Supabase auth by modifying `middleware.ts` for local visual checks via Playwright is incredibly dangerous because the change can easily be leaked into version control. Middleware controls critical authentication and authorization pathways. Accidentally submitting this change results in a massive security regression.
+**Action:** When temporarily changing configuration files like `middleware.ts` to facilitate visual checks or bypass auth, ALWAYS verify `git status` thoroughly before submission and use `git restore` and `git restore --staged` to completely revert the changes. Ensure temporary scripts or logs (e.g. `next_output.log`) are removed and not committed.
