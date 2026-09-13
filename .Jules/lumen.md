@@ -1,0 +1,3 @@
+## 2024-08-28 - Interactive Global CSS Classes Need Transitions in Inline Styles
+**Learning:** Found a pattern where interactive global CSS classes (like `.industries-card` or `.services-bento-card`) that define pseudo-class styles (like `:hover` and `:focus-visible`) are assigned to elements that use inline styles. If the inline styles lack a corresponding CSS transition, the visual state change on hover or focus is abrupt and lacks polish.
+**Action:** When assigning interactive global CSS classes to grid or bento components, ensure they are paired with a smooth CSS transition (e.g., `transition: border-color var(--duration-fast) var(--ease-standard)`) in the inline styles to prevent abrupt visual state changes on hover.
