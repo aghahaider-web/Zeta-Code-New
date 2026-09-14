@@ -59,7 +59,7 @@ export default function ConversionWebsitesPage() {
                 fontSize: 'var(--text-base)',
                 fontWeight: 600,
                 textDecoration: 'none',
-                borderRadius: 'var(--radius-sm)',
+                borderRadius: '2px',
                 transition: `background var(--duration-fast) var(--ease-standard)`,
               }}
             >
@@ -76,7 +76,7 @@ export default function ConversionWebsitesPage() {
                 fontSize: 'var(--text-base)',
                 fontWeight: 600,
                 textDecoration: 'none',
-                borderRadius: 'var(--radius-sm)',
+                borderRadius: '2px',
                 transition: `all var(--duration-fast) var(--ease-standard)`,
               }}
             >
