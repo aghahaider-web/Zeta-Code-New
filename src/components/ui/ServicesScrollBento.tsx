@@ -212,6 +212,7 @@ export function ServicesScrollBento({ cards }: Props) {
             color: 'var(--color-ink)',
             background: 'var(--color-canvas)',
             willChange: 'opacity, transform',
+            transition: 'border-color var(--duration-fast) var(--ease-standard)',
           }}
         >
           {s.flag && (
