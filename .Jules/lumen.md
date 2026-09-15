@@ -1,0 +1,3 @@
+## 2024-05-24 - Interactive CSS Class Hover States in Inline React Architecture
+**Learning:** In a codebase heavily relying on React inline styles alongside global CSS interactive states (like `:hover` for `.industries-card`), explicit inline CSS `transition` rules (e.g. `transition: border-color var(--duration-fast) var(--ease-standard)`) are required directly on the component. Otherwise, the global CSS pseudo-class state change triggers abruptly, overriding the inline styles without an animation curve.
+**Action:** When assigning interactive global CSS classes to grid or bento components, ensure they are always paired with a smooth CSS transition defined in their inline styles to prevent abrupt visual state changes on hover.
