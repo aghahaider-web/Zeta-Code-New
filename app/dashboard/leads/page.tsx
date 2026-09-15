@@ -55,13 +55,29 @@ export default async function LeadsPage({
             ))
           ) : (
             <tr>
-              <td colSpan={6} style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-ink-muted)' }}>
-                <p style={{ marginBottom: '0.5rem' }}>No leads found.</p>
-                {(searchParams.q || searchParams.status) && (
-                  <Link href="/dashboard/leads" style={{ color: 'var(--color-ink)', textDecoration: 'underline', fontWeight: 500 }}>
-                    Clear filters
-                  </Link>
-                )}
+              <td colSpan={6} style={{ padding: '3rem 2rem' }}>
+                <div style={{ maxWidth: '400px', margin: '0 auto', textAlign: 'center', padding: '2rem', background: 'var(--color-canvas)', border: '1px solid var(--color-border)', borderRadius: '4px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', marginBottom: '0.5rem', color: 'var(--color-ink)' }}>No leads found</h3>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-olive)', marginBottom: '1.5rem' }}>
+                    {searchParams.q || searchParams.status
+                      ? "We couldn't find any leads matching your current filters."
+                      : "There are currently no leads in the system."}
+                  </p>
+                  {(searchParams.q || searchParams.status) && (
+                    <Link
+                      href="/dashboard/leads"
+                      style={{
+                        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                        minHeight: '44px', padding: '0 1.75rem',
+                        background: 'transparent', color: 'var(--color-ink)', border: '1px solid var(--color-ink)',
+                        borderRadius: '2px', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 600,
+                        textDecoration: 'none'
+                      }}
+                    >
+                      Clear filters
+                    </Link>
+                  )}
+                </div>
               </td>
             </tr>
           )}
